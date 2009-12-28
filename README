@@ -1,0 +1,4 @@
+Unit test
+---------
+
+C:\RPCFN5solutions> ruby test_maze.rb 01_DmytroShteflyuk > 01_DmytroShteflyuk/result.txt
