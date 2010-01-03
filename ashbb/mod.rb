@@ -22,7 +22,7 @@ module Mod
     a = animate do
       if @found or @hunters.empty?
         @msg.text = @found ? 'Yes, solvable!' : 'No, not solvable.'
-        a.stop; @balloon.show; timer(1){@balloon.hide}
+        a.stop; @balloon.show; @msg.show; timer(1){@balloon.hide; @msg.hide}
         @solution.show if @found
       else
         @hunters.each{|hunter| go hunter}

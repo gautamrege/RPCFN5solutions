@@ -19,20 +19,17 @@ class Maze < Shoes
     colors = {'#' => forestgreen, ' ' => white, 'A' => red, 'B' => blue}
     formats = %w[pdf ps svg]
     
-    stack :top => 30, :left => 10, :width => 370, :height => 130 do
-      mazes.each_line.with_index do |line, y|
-        line.chomp.split('').each.with_index do |c, x|
-          @maze[[x, y]] = rect x*10, y*10, 10, 10, :fill => colors[c], :prev => nil
-          @hunters = [@start = [x, y]] if c == 'A'
-          @goal = [x, y] if c == 'B'
-        end
+    mazes.each_line.with_index do |line, y|
+      line.chomp.split('').each.with_index do |c, x|
+        @maze[[x, y]] = rect x*10+10, y*10+30, 10, 10, :fill => colors[c], :prev => nil
+        @hunters = [@start = [x, y]] if c == 'A'
+        @goal = [x, y] if c == 'B'
       end
-      
-      @balloon = stack :left => 30, :top => 20, :width => 310, :height =>90 do
-        background rgb(255, 255, 255, 0.8), :curve => 10
-        @msg = subtitle '', :align => 'center', :top => 20
-      end.hide
     end
+      
+    @balloon = background(rgb(255, 255, 255, 0.8), :curve => 10, 
+      :left => 40, :top => 50, :width => 310, :height =>90).hide
+    @msg = subtitle('', :align => 'center', :top => 70).hide
   
     para "MAZE#{n+1}", :left => 10
     para link('solvable?').click{solv}, :left => 10, :top => 160
@@ -46,4 +43,4 @@ class Maze < Shoes
   end
 end
 
-Shoes.app :width => 390, :height => 190, :title => 'Maze Hunter 2 r0.3a', :resizable => false
+Shoes.app :width => 390, :height => 190, :title => 'Maze Hunter 2 r0.3b', :resizable => false
