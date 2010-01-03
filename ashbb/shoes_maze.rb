@@ -17,6 +17,7 @@ class Maze < Shoes
     
     @maze, @found = {}, false
     colors = {'#' => forestgreen, ' ' => white, 'A' => red, 'B' => blue}
+    formats = %w[pdf ps svg]
     
     stack :top => 30, :left => 10, :width => 370, :height => 130 do
       mazes.each_line.with_index do |line, y|
@@ -36,8 +37,13 @@ class Maze < Shoes
     para "MAZE#{n+1}", :left => 10
     para link('solvable?').click{solv}, :left => 10, :top => 160
     @solution = para(link('solution').click{solution}, :left => 100, :top => 160).hide
+    para link('snapshot:').click{_snapshot(:filename => "snapshot.#{formats.first}", 
+      :format => formats.first.to_sym)}, :left => 200, :top => 160
+    bg = image :left => 280, :top => 160, :width => 50, :height => 20
+    msg= para formats.first, :left => 280, :top => 160
+    bg.click{formats << formats.shift; msg.text = formats.first}
     para link('next', :click => "/#{(n+1)%5}") , :left => 330, :top => 160
   end
 end
 
-Shoes.app :width => 390, :height => 190, :title => 'Maze Hunter 2 r0.2', :resizable => false
+Shoes.app :width => 390, :height => 190, :title => 'Maze Hunter 2 r0.3a', :resizable => false
