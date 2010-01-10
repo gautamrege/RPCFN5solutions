@@ -1,0 +1,11 @@
+Loaded suite test_maze
+Started
+..E
+Finished in 0.015625 seconds.
+
+  1) Error:
+test_maze_steps(MazeTest):
+NoMethodError: undefined method `steps' for #<Maze:0xe62700>
+    test_maze.rb:122:in `test_maze_steps'
+
+3 tests, 3 assertions, 0 failures, 1 errors, 0 skips
