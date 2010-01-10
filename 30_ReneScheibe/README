@@ -1,0 +1,10 @@
+Ruby Programming Challenge For Newbies: Mazes (#5)
+
+Author:    René Scheibe
+Email:     rene.scheibe@gmail.com
+Date:      January 7, 2010
+Runs with: Ruby 1.9.1, JRuby 1.4
+Algorithm: BFS (breadth-first search)
+
+The implementation is based on the ordered Hash of Ruby 1.9.
+It also assumes that the "each" method takes notice of new elements that are added during the enumeration.
